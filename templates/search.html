@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>imgsearch</title>
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
+        />
+        <link rel="stylesheet" href="static/style.css" />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+        />
+    </head>
+    <body>
+        <section class="hero has-text-centered">
+            <div class="hero-body">
+                <h1 class="title">search results</h1>
+                <p class="subtitle">
+                    found {{ .resultsAmount }} results in {{ .elapsedMs }}ms
+                </p>
+                <img
+                    src="data:image/{{ .previewFormat }};charset=utf-8;base64,{{ .base64img }}"
+                    alt="searched image"
+                    class="rounded-image preview-image"
+                />
+            </div>
+
+            <div class="container">
+                <div class="images">
+                    {{range .results}}
+                    <a target="_blank" rel="noopener noreferrer" href="{{.}}">
+                        <img
+                            src="{{.}}"
+                            loading="lazy"
+                            class="search-image rounded-image"
+                        />
+                    </a>
+                    {{end}}
+                </div>
+            </div>
+        </section>
+    </body>
+</html>
